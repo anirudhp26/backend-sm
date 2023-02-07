@@ -29,7 +29,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 1000,
+        maxAge: 3600000,
         secure: true,
         httpOnly: true,
         sameSite: 'none',
@@ -84,7 +84,6 @@ app.post('/login', (req,res) => {
                 }
                 if (valid) {
                     req.session.user = regusername;
-                    res.cookie("user", req.session.user)
                     res.send({loginStatus: true, message: req.session.user})
                 } else {
                     res.send({loginStatus: false, message: 'Incorrect Password'})

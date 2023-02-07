@@ -16,7 +16,7 @@ app.use(express.json());
 
 // session saving and cookie management
 app.use(cors({
-    origin: ["*"],
+    origin: ["http://localhost:3000","https://test-4e8c8.web.app"],
     methods: ["GET", "POST"],
     credentials: true,
     cross

@@ -84,6 +84,7 @@ app.post('/login', (req,res) => {
                 }
                 if (valid) {
                     req.session.user = regusername;
+                    res.cookie("user", req.session.user)
                     res.send({loginStatus: true, message: req.session.user})
                 } else {
                     res.send({loginStatus: false, message: 'Incorrect Password'})

@@ -67,6 +67,15 @@ app.get('/checkLogin', (req,res) => {
     }
 });
 
+app.get('/getUsers', (req,res) => {
+    Users.distinct('username', (err,responce) => {
+        if (err) {
+            res.send(err);
+        }
+        res.send(responce);
+    })
+})
+
 app.post('/login', (req,res) => {
     const regusername = req.body.username;
     const regemail = req.body.email;

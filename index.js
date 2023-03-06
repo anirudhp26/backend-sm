@@ -21,6 +21,7 @@ app.use(cors({
     methods: ["GET", "POST"],
     credentials: true,
 }));
+
 app.enable('trust proxy');
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -73,12 +74,16 @@ app.post('/getUsers', (req,res) => {
     if (search === "") {
         res.send([]);
     }
-    Users.find({username: {$regex: search, $options: "i"}}, (err,responce) => {
-        if (err) {
-            res.send(err);
-        }
-        res.send(responce);
-    })
+    else{
+        Users.find({username: {$regex: search, $options: "i"}}, (err,responce) => {
+            if (err) {
+                res.send(err);
+            }
+            else{
+                res.send(responce);
+            }
+        })
+    }
 })
 
 app.post('/login', (req,res) => {

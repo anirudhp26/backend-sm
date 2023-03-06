@@ -67,7 +67,7 @@ app.get('/checkLogin', (req,res) => {
     }
 });
 
-app.get('/getUsers', (req,res) => {
+app.post('/getUsers', (req,res) => {
     const search = req.body.keyword || "";
     Users.find({username: {$regex: search, $options: "i"}}, (err,responce) => {
         if (err) {

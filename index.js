@@ -68,7 +68,8 @@ app.get('/checkLogin', (req,res) => {
 });
 
 app.get('/getUsers', (req,res) => {
-    Users.distinct('username', (err,responce) => {
+    const keyword = req.body.keyword;
+    Users.find({'username' : {$regex : `${keyword}`}}, (err,responce) => {
         if (err) {
             res.send(err);
         }

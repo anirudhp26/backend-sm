@@ -69,7 +69,7 @@ app.get('/checkLogin', (req,res) => {
 
 app.get('/getUsers', (req,res) => {
     const keyword = req.body.keyword;
-    Users.find({'username' : {$regex : `${keyword}`}}, (err,responce) => {
+    Users.find({'username' : {$regex : new RegExp(keyword)}}, (err,responce) => {
         if (err) {
             res.send(err);
         }

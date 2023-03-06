@@ -69,6 +69,9 @@ app.get('/checkLogin', (req,res) => {
 
 app.post('/getUsers', (req,res) => {
     const search = req.body.keyword || "";
+    if (search === "") {
+        res.send([]);
+    }
     Users.find({username: {$regex: search, $options: "i"}}, (err,responce) => {
         if (err) {
             res.send(err);

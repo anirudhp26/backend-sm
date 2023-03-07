@@ -103,7 +103,7 @@ app.post('/login', (req,res) => {
                 }
                 if (valid) {
                     req.session.user = regusername;
-                    res.send({loginStatus: true, message: req.session.user})
+                    res.send({loginStatus: true})
                 } else {
                     res.send({loginStatus: false, message: 'Incorrect Password'})
                 }

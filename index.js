@@ -69,6 +69,10 @@ app.get('/checkLogin', (req,res) => {
     }
 });
 
+app.get('/getLoggedinUserinfo', (req,res) => {
+    res.send(req.session.user);
+})
+
 app.post('/getUsers', (req,res) => {
     const search = req.body.keyword || "";
     if (search === "") {

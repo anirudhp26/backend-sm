@@ -32,6 +32,23 @@ export const login = async (req, res) => {
     });
 };
 
+export const getUsers = async (req,res) => {
+    const search = req.body.keyword || "";
+    if (search === "") {
+        res.send([]);
+    }
+    else{
+        User.find({username: {$regex: search, $options: "i"}}, (err,responce) => {
+            if (err) {
+                res.send(err);
+            }
+            else{
+                res.send(responce);
+            }
+        })
+    }
+}
+
 export const signup = async (req,res) => {
     try {
         const username = req.body.username;

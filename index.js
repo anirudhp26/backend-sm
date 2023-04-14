@@ -34,41 +34,6 @@ app.post('/auth/signup', signup);
 app.use('/auth', authRoutes);
 
 
-app.get('/checkLogin', (req,res) => {
-    if (req.session.user) {
-        res.send({loggedIn: true, username: req.session.user});
-    }
-    else{
-        res.send({loggedIn: false})
-    }
-});
-
-app.get('/getLoggedinUserinfo', (req,res) => {
-    res.send(req.session.user);
-})
-
-app.post('/getUsers', (req,res) => {
-    const search = req.body.keyword || "";
-    if (search === "") {
-        res.send([]);
-    }
-    else{
-        Users.find({username: {$regex: search, $options: "i"}}, (err,responce) => {
-            if (err) {
-                res.send(err);
-            }
-            else{
-                res.send(responce);
-            }
-        })
-    }
-})
-
-app.get('/logout', (req,res) => {
-    req.session.destroy();
-    res.send({loggedIn: false})
-})
-
 const port = process.env.PORT || 3001;
 
 app.listen(port, (req,res) => {

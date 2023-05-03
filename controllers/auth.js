@@ -23,7 +23,7 @@ export const login = async (req, res) => {
                     console.log(responce[0]._id);
                     const token = jwt.sign({ id: responce[0]._id }, process.env.JWT_SECRET);
                     delete responce[0].password;
-                    res.status(200).json({ loginStatus: true, token });
+                    res.status(200).json({ user: regusername, loginStatus: true, token });
                 } else {
                     res.status(401).json({ loginStatus: false, message: 'Incorrect Password' })
                 }

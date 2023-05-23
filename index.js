@@ -15,7 +15,7 @@ app.use(express.json());
 
 // cookie management
 app.use(cors({
-    origin: ["http://localhost:3000", "https://test-4e8c8.web.app"],
+    origin: ["http://localhost:3000", "https://test-4e8c8.web.app", "https://learnwithme-b8c40.web.app/"],
     methods: ["GET", "POST"],
     credentials: true,
 }));

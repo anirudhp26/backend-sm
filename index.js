@@ -1,21 +1,18 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import { signup } from './controllers/auth.js';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 dotenv.config();
 
 const app = express();
-
-
 app.use(express.json());
 
 
 // cookie management
 app.use(cors({
-    origin: ["http://localhost:3000", "https://test-4e8c8.web.app", "https://mym-wheat.vercel.app"],
+    origin: ["http://localhost:3000", "https://mym-wheat.vercel.app"],
     methods: ["GET", "POST"],
     credentials: true,
 }));
@@ -32,7 +29,6 @@ connection.once('open', () =>{
 });
 
 //authentication Part
-app.post('/auth/signup', signup);
 app.use('/auth', authRoutes);
 
 

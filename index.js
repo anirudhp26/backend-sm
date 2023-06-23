@@ -10,7 +10,6 @@ const app = express();
 app.use(express.json());
 
 
-// cookie management
 app.use(cors({
     origin: ["http://localhost:3000", "https://mym-wheat.vercel.app"],
     methods: ["GET", "POST"],

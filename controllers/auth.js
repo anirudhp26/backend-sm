@@ -6,9 +6,8 @@ const salt = 1;
 
 export const login = async (req, res) => {
     const regusername = req.body.username;
-    const regemail = req.body.email;
     const regpassword = req.body.password;
-    User.find({ username: regusername } || { email: regemail }, (err, responce) => {
+    User.find({ username: regusername }, (err, responce) => {
         if (err != undefined) {
             res.status(401).json({ loginStatus: false, message: 'Some Error encountered, Please try again after sometime' })
         }
@@ -52,10 +51,9 @@ export const getUsers = async (req,res) => {
 export const signup = async (req,res) => {
     try {
         const username = req.body.username;
-        const email = req.body.email;
         const regpassword = req.body.password;
         const newPassword = await bcrypt.hash(regpassword,salt);
-        const user = new User({username, email, password: newPassword});
+        const user = new User({username, password: newPassword});
         const responce = await user.save();
         res.status(201).json({ user: responce, message: "Account Created" });
     } catch (error) {
